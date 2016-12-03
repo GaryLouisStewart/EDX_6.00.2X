@@ -75,18 +75,19 @@ def findPocketReturn(game, numTrails, trialSize, toPrint):
     return pocketReturns
 
 random.seed(0)
-numTrails = 20
+numTrials = 20
 resultDict = {}
 games = (FairRoulette, EuRoulette, AmRoulette)
 for G in games:
     resultDict[G().__str__()] = []
 for numSpins in (100, 1000, 10000, 100000):
-    print('\nSimulate betting a pocket for', numTrails, 'trails',
+    print('\nSimulate betting a pocket for', numTrials,
+          'trails of',
           numSpins, 'spins each')
     for G in games:
-        pocketReturns = findPocketReturn(G(), numTrails,
+        pocketReturns = findPocketReturn(G(), numTrials,
                                          numSpins, False)
-        print('Exp. return for', G(), '=',\
+        print('Exp. return for', G(), '=',
               str(100*sum(pocketReturns)/float(len(pocketReturns))) + '%')
 def getMeanAndStd(X):
     mean = sum(X)/float(len(X))
@@ -95,30 +96,3 @@ def getMeanAndStd(X):
         tot += (x - mean)**2
     std = (tot/len(X))**0.5
     return mean, std
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# numSpins = 10000
-# game = FairRoulette()
-# playRoulette(game, numSpins)
