@@ -74,6 +74,15 @@ def findPocketReturn(game, numTrails, trialSize, toPrint):
         pocketReturns.append(trailVals[2])
     return pocketReturns
 
+def getMeanAndStd(X):
+    mean = sum(X)/float(len(X))
+    tot = 0.0
+    for x in X:
+        tot += (x - mean)**2
+    std = (tot/len(X))**0.5
+    return mean, std
+
+
 random.seed(0)
 numTrials = 20
 resultDict = {}
@@ -85,17 +94,12 @@ for numSpins in (100, 1000, 10000, 100000):
           'trails of',
           numSpins, 'spins each')
     for G in games:
-        pocketReturns = findPocketReturn(G(), numTrials,
-                                         numSpins, False)
-        print('Exp. return for', G(), '=',
-              str(100*sum(pocketReturns)/float(len(pocketReturns))) + '%')
+        pocketReturns = findPocketReturn(G(), numTrials, numSpins, False)
+        mean, std = getMeanAndStd(pocketReturns)
+        resultDict[G().__str__()].append((numSpins,
+                                          100*mean, 100*std))
 
-#the following function below computes the mean and the standard deviation of a list or an array(X)
+        print('Exp. return for', G(), '=', str(round(100*mean, 3))
+              + '%,', '+/- ' + str(round(100*1.96*std, 3))
+              + '% with 95% confidence')
 
-def getMeanAndStd(X):
-    mean = sum(X)/float(len(X))
-    tot = 0.0
-    for x in X:
-        tot += (x - mean)**2
-    std = (tot/len(X))**0.5
-    return mean, std
