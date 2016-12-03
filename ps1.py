@@ -52,19 +52,27 @@ def greedy_cow_transport(cows,limit=10):
     Returns:
     A list of lists, with each inner list containing def greedy_cow_transport(cows,limit=10):
     """
-    cows = []
-    cows_weight = 0
-    cows_value = 0
-    items_sorted = sorted(items, key=keyFunc)
-    while len(items_sorted) > 0:
-        item = items_sorted.pop()
-        if weight(item) + cows_weight <= max_weight:
-            cows.append(item)
-            cows_weight += weight(cows[-1])
-            cows_value += value(cows[-1])
-        else:
-            break
-    return cows, cows_weight, cows_value
+    def keywithmaxval(load_cows):
+        """
+        create a list of the dictionary's keys and values
+        """
+        v=list(load_cows().values)
+        k=list(load_cows().keys)
+        return k[v.index(max(v))]
+
+    # cows = []
+    # cows_weight = 0
+    # cows_value = 0
+    # items_sorted = sorted(items, key=keyFunc)
+    # while len(items_sorted) > 0:
+    #     item = items_sorted.pop()
+    #     if weight(item) + cows_weight <= max_weight:
+    #         cows.append(item)
+    #         cows_weight += weight(cows[-1])
+    #         cows_value += value(cows[-1])
+    #     else:
+    #         break
+    # return cows, cows_weight, cows_value
 
 # Problem 2
 def brute_force_cow_transport(cows,limit=10):
