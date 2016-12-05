@@ -1,3 +1,5 @@
+import random
+
 '''
 the following is a simulation for the following problem...
 ** you have a bucket with 3 red balls and 3 green balls  **
@@ -7,7 +9,6 @@ the following is a simulation for the following problem...
 
 helper function is below...
 '''
-import random
 
 def singleTrial():
     '''

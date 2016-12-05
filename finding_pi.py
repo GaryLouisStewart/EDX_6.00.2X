@@ -1,3 +1,5 @@
+import random
+
 '''
 Buffon-Laplace
 
@@ -11,7 +13,8 @@ Ac = Nr**2 = N (where N = Pi)
 * area of circle = (4 * needles in circle) / (needles in square)
 
 '''
-import random
+
+
 
 def getMeanAndStd(X):
     mean = sum(X) / float(len(X))
