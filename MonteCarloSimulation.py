@@ -39,7 +39,7 @@ def noReplacementSimulation(numTrials):
             noTrue += 1
     return float(noTrue)/float(numTrials)
 
-
+print(noReplacementSimulation(1000))
 
 
 
